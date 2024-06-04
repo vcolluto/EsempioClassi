@@ -33,23 +33,47 @@ public class Automobile {
 
 	@Override
 	public String toString() {
-		return "Automobile [marca=" + marca + ", modello=" + modello + ", velocità=" + velocità + ", benzina=" + benzina
+		return "Automobile [marca=" + marca + ", modello=" + modello + ", modalità=" + modalità+ ", velocità=" + velocità + ", benzina=" + benzina
 				+ "]";
 	}
 
-	public Automobile(String marca, String modello, String modalità) {		//costruttore della classe (serve per "costruire" un oggetto della classe) 
+	//metodo costruttore:
+	// - stesso nome della classe
+	// - non ha un valore di ritorno (non è possibile nemmeno indicarlo con void)
+	public Automobile(String marca, String modello, String modalità) throws Exception {		//costruttore della classe (serve per "costruire" un oggetto della classe) 
 		//costruisco una nuova automobile con la marca e il modello specificati dai parametri, impostando velocità=0 e benzina=0
 		
 		//lo stato iniziale deve essere valido (tutti gli attributi devono avere un valore valido!)
+		
+		/*
+		//Prima strategia in caso di valori non validi: valore predefinito (l'oggetto viene comunque creato)
 		if (!marca.isEmpty())
 			this.marca = marca;			//this.marca: attributo di questa classe; marca: parametro
-		this.modello = modello;
+		else // valore predefinito
+			this.marca="non impostata";
+		if (!modello.isEmpty())
+			this.modello = modello;
+		else	//valore predefinito
+			this.modello="non impostato";
+		*/
+		
+		//Seconda strategia in caso di valori non validi: generare un'eccezione (l'oggetto non viene creato)
+		if (!marca.isEmpty())
+			this.marca = marca;			//this.marca: attributo di questa classe; marca: parametro
+		else // valore predefinito
+			throw new Exception("marca non valida!");		//genero un'eccezione
+		
+		if (!modello.isEmpty())
+			this.modello = modello;
+		else	//valore predefinito
+			throw new Exception("modello non valido!");		//genero un'eccezione
+		
 		this.velocità=0;		//sulla nuova automobile è sempre 0
 		this.benzina=0;			//sulla nuova automobile è sempre 0
 		setModalità(modalità);	//richiamo il setter (che a sua volta controlla la validità)
 	}
 	
-	public Automobile(String marca, String modello) {		//costruttore della classe (serve per "costruire" un oggetto della classe) 
+	public Automobile(String marca, String modello) throws Exception {		//costruttore della classe (serve per "costruire" un oggetto della classe) 
 		this(marca,modello,"normale");		//richiamo il costruttore "principale" con modalità="normale"
 	}
 
@@ -80,7 +104,7 @@ public class Automobile {
 	public void setModalità(String modalità) {
 		if (modalità.equals("normale") || modalità.equals("eco") || modalità.equals("sport"))
 			this.modalità = modalità;	//cambio il valore dell'attributo (this.modalità)
-		else {
+		else {		//modalità non valida => imposto un valore predefinito
 			System.out.println("modalità non riconosciuta");
 			this.modalità="normale";
 		}

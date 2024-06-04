@@ -1,8 +1,8 @@
 package org.generation.italy.model;
 
 public class Concessionario {	//stesso package di Automobile
-	
-	Automobile a1=new Automobile("Opel", "Astra");
+
+	Automobile a1;
 	
 	public void vendiAutomobile() {
 		
@@ -11,5 +11,17 @@ public class Concessionario {	//stesso package di Automobile
 		
 		
 	}
+
+	public Concessionario() {
+		super();
+		try {
+		 a1=new Automobile("Opel", "Astra");
+		} catch (Exception e) {
+			
+		}
+		
+	}
+	
+	
 
 }
