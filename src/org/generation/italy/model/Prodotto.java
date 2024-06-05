@@ -1,15 +1,26 @@
 package org.generation.italy.model;
 
 public class Prodotto {
-//informazioni (dati) 	ATTRIBUTI: definiscono caratteristiche (nome, categoria) oppure ne cambiano lo stato (quantità, prezzo)
-	public double prezzo;
 	public int quantità;
 	public String categoria;
 	public int codice;
-	public String nome;
+	public String nome;	
 	
-	
-// operazioni 			METODI
+		
+	public Prodotto(String nome, String categoria) {
+	//	super();
+		quantità=0;
+		if (!categoria.isEmpty())
+			this.categoria=categoria;
+		else 
+			this.categoria="non definita";
+		codice=-1;
+		if (!nome.isEmpty())
+			this.nome=nome;
+		else
+			this.nome="non impostato";
+	}
+
 	public void carica(int valore) {
 		quantità=quantità+valore;
 	}
